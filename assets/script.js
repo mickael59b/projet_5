@@ -7,7 +7,7 @@ function changeSlide(btn) {
   const slide_active = document.querySelector('.active');
   let slideActive = [...slides].indexOf(slide_active) + btn;
 
-  // Handle edge cases for slides
+  // Handle edge cases for slides and dots
   if (slideActive < 0) {
     slideActive = countSlides;
   } else if (slideActive > countSlides) {
@@ -24,11 +24,12 @@ function changeSlide(btn) {
 
 let interval = setInterval(() => changeSlide(1), 6000); // Change slide every 6 seconds
 
-btnslider.forEach(btns => {
-  btns.addEventListener('click', function(e) {
+btnslider.forEach(btn => {
+  btn.addEventListener('click', function(e) {
     clearInterval(interval); // Clear the interval to prevent conflicting timers
-    const btn = e.target.id === "right" ? 1 : -1;
-    changeSlide(btn);
+    const btnValue = e.target.id === "right" ? 1 : -1; // Set btnValue to 1 or -1
+    changeSlide(btnValue);
     interval = setInterval(() => changeSlide(1), 6000); // Restart interval with consistent timing
   });
 });
+
