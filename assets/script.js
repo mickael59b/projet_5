@@ -27,9 +27,10 @@ let interval = setInterval(() => changeSlide(1), 6000); // Change slide every 6 
 btnslider.forEach(btn => {
   btn.addEventListener('click', function(e) {
     clearInterval(interval); // Clear the interval to prevent conflicting timers
-    const btnValue = e.target.id === "right" ? 1 : -1; // Set btnValue to 1 or -1
+    const btnValue = e.currentTarget.id === "right" ? 1 : -1; // Use currentTarget to get the correct button ID
     changeSlide(btnValue);
     interval = setInterval(() => changeSlide(1), 6000); // Restart interval with consistent timing
   });
 });
+
 
